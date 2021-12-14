@@ -1,4 +1,6 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')   //用于抽取css成单独文件
+const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin')  //用于压缩css
+const cssnano =  require('cssnano')
 const path = require('path')
 console.log('sdf')
 module.exports = {
@@ -69,6 +71,10 @@ module.exports = {
     plugins: [
         new MiniCssExtractPlugin({
             filename: '[name]_[contenthash:8].css'
+        }),
+        new OptimizeCssAssetsWebpackPlugin({
+            assetNameRegExp: /\.css$/g,
+
         })
     ],
     mode: 'production',
