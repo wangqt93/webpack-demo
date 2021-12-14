@@ -1,5 +1,6 @@
 const path = require('path')
-const webpack = require('webpack')
+// const webpack = require('webpack')
+
 module.exports = {
     entry: {   //打包入口的文件位置
         index: './src/index.js',
@@ -51,11 +52,15 @@ module.exports = {
             }
         ]
     },
-    mode: 'development',
+    mode: 'production',
     // plugins: [
     //     new webpack.HotModuleReplacementPlugin()  //热更新
     // ],
-    devServer: {
-        static: './dist',
-    },
+    // devServer: {
+    //     static: './dist'
+    // },
+    // performance: {
+    //     "maxEntrypointSize": 10000000,
+    //     "maxAssetSize": 30000000
+    // }
 }

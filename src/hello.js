@@ -1,4 +1,3 @@
-
 'use strict'
 import React, { Component } from 'react'
 import ReactDOM from "react-dom"
@@ -9,7 +8,7 @@ class ReactDemo extends Component {
     render() {
         return (
             <div className="container">
-                <h1>this is ReactDemos1112</h1>
+                <h1>this is ReactDemossss</h1>
                 <img src={tt}></img>
             </div>
         )
