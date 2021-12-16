@@ -1,5 +1,8 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')   //用于抽取css成单独文件
 const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin')  //用于压缩css
+const {CleanWebpackPlugin} = require('clean-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+
 const cssnano =  require('cssnano')
 const path = require('path')
 console.log('sdf')
@@ -69,13 +72,41 @@ module.exports = {
         ]
     },
     plugins: [
-        new MiniCssExtractPlugin({
+        new MiniCssExtractPlugin({  //提取css成文件
             filename: '[name]_[contenthash:8].css'
         }),
-        new OptimizeCssAssetsWebpackPlugin({
-            assetNameRegExp: /\.css$/g,
-
-        })
+        new OptimizeCssAssetsWebpackPlugin({  //压缩css
+            assetNameRegExp: /\.css$/g
+        }),
+        new HtmlWebpackPlugin({ //压缩html
+            template: path.join(__dirname,'src/hello.html'),
+            filename: 'hello.html',
+            chunks: ['hello'],
+            inject: true,
+            minify: {
+                html5:true,
+                collapseWhitespace: true,
+                preserveLineBreaks: false,
+                minifyCSS: true,
+                minifyJS: true,
+                removeComments:false
+            }
+        }),
+        new HtmlWebpackPlugin({ 
+            template: path.join(__dirname,'src/index.html'),
+            filename: 'index.html',
+            chunks: ['index'],
+            inject: true,
+            minify: {
+                html5:true,
+                collapseWhitespace: true,
+                preserveLineBreaks: false,
+                minifyCSS: true,
+                minifyJS: true,
+                removeComments:false
+            }
+        }),
+        new CleanWebpackPlugin(),  //自动清理output打包目录
     ],
     mode: 'production',
 }
